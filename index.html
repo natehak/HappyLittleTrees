@@ -1,15 +1,15 @@
 <html>
   <head>
     <!-- stylesheet -->
-    <link href="/css/literallycanvas.css" rel="stylesheet">
+    <link href="./css/literallycanvas.css" rel="stylesheet">
 
     <!-- dependency: React.js -->
     <script src="//cdnjs.cloudflare.com/ajax/libs/react/0.13.3/react-with-addons.js"></script>
 
     <!-- Literally Canvas -->
-    <script src="/js/literallycanvas.js"></script>
+    <script src="./js/literallycanvas.js"></script>
 
-    <script src="/js/resemble.js"></script>
+    <script src="./js/resemble.js"></script>
 
     <style>
     </style>
@@ -27,11 +27,11 @@
         // Look ma, no jQuery!
         var lc = LC.init(
             document.getElementsByClassName('literally')[0],
-            {imageURLPrefix: '/img'}
+            {imageURLPrefix: './img'}
         );
         var context = lc.ctx;
         var myImage = new Image();
-        myImage.src = "http://localhost:8000/paintings/ross1.jpg";
+        myImage.src = "./paintings/ross1.jpg";
         lc.setImageSize(myImage.naturalWidth, myImage.naturalHeight);
         function drawImage() {
             context.globalAlpha = 0.5;
