@@ -1,14 +1,17 @@
 <html>
   <head>
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css" integrity="sha512-dTfge/zgoMYpP7QbHy4gWMEGsbsdZeCXz7irItjcC3sPUFtf0kuFbDz/ixG7ArTxmDjLXDmezHubeNikyKGVyQ==" crossorigin="anonymous">
+
     <!-- stylesheet -->
     <link href="./css/literallycanvas.css" rel="stylesheet">
+    <link href="./css/style.css" rel="stylesheet">
 
     <!-- dependency: React.js -->
     <script src="//cdnjs.cloudflare.com/ajax/libs/react/0.13.3/react-with-addons.js"></script>
 
     <!-- Literally Canvas -->
     <script src="./js/literallycanvas.js"></script>
-
     <script src="./js/resemble.js"></script>
 
     <style>
@@ -16,54 +19,22 @@
 
   </head>
   <body>
-    <!-- where the widget goes. you can do CSS to it. -->
+    <h1>Happy Little Trees</h1>
+    <h4>Inspired by Bob Ross, trace over the item and see how similar your drawing is</h4>
+
     <div class="literally"></div>
-    Mismatch: <span id="mismatch">100%</span>
-    <input type="button" id="check" value="Check"></input>
-    <input type="button" id="dl" value="Download"></input>
+
+    <div class="options">
+        <input class="btn btn-lg btn-outline" type="button" id="photo1" value="photo1"></input>
+        <input class="btn btn-lg btn-outline" type="button" id="photo2" value="photo2"></input>
+        <input class="btn btn-lg btn-outline" type="button" id="photo3" value="photo3"></input>
+
+        <h2>Mismatch: <span id="mismatch">100%</span></h2>
+        <input class="btn btn-lg btn-outline" type="button" id="check" value="Check"></input>
+        <input class="btn btn-lg btn-outline" type="button" id="dl" value="Download"></input>
+    </div>
 
     <!-- kick it off -->
-    <script>
-        // Look ma, no jQuery!
-        var lc = LC.init(
-            document.getElementsByClassName('literally')[0],
-            {imageURLPrefix: './img'}
-        );
-        var context = lc.ctx;
-        var myImage = new Image();
-        myImage.src = "./paintings/ross1.jpg";
-        lc.setImageSize(myImage.naturalWidth, myImage.naturalHeight);
-        function drawImage() {
-            context.globalAlpha = 0.5;
-            context.drawImage(myImage, 0, 0);
-            context.globalAlpha = 1.0;
-        }
-
-        function updateMatch() {
-            var diff = resemble(lc.getImage().toDataURL())
-                .compareTo(myImage.src)
-                .onComplete(function(data){
-                    document.getElementById("mismatch").innerHTML =
-                        data.misMatchPercentage + "%";
-             });
-            diff.ignoreAntialiasing();
-        }
-
-        document.getElementById("check").onclick = updateMatch;
-        document.getElementById("dl").onclick = function() {
-            window.open(lc.getImage().toDataURL());
-        };
-
-        myImage.onload = drawImage;
-        var unsubscribe = lc.on('drawingChange', drawImage);
-        var unsubscribe = lc.on('shapeSave', drawImage);
-        var unsubscribe = lc.on('clear', drawImage);
-        var unsubscribe = lc.on('undo', drawImage);
-        var unsubscribe = lc.on('redo', drawImage);
-        var unsubscribe = lc.on('primaryColorChange', drawImage);
-        var unsubscribe = lc.on('secondaryColorChange', drawImage);
-        var unsubscribe = lc.on('backgroundColorChange', drawImage);
-
-    </script>
+    <script src="./js/js.js"></script>
   </body>
 </html>
